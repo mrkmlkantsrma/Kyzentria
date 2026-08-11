@@ -1,0 +1,126 @@
+---
+import { toolRoutes } from "@/data/tools";
+---
+
+<section class="tool-band" aria-labelledby="tools-title">
+  <div class="shell">
+    <div class="section-heading">
+      <p>Tool Routes</p>
+      <h2 id="tools-title">Build one useful page at a time.</h2>
+    </div>
+    <div class="tool-grid">
+      {
+        toolRoutes.map((tool) => (
+          <a class={`tool-card ${tool.accent} focus-ring`} href={tool.href}>
+            <span>{tool.status}</span>
+            <h3>{tool.title}</h3>
+            <p>{tool.description}</p>
+          </a>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .tool-band {
+    padding: 70px 0 20px;
+  }
+
+  .section-heading {
+    max-width: 640px;
+  }
+
+  .section-heading p {
+    color: var(--coral);
+    font-size: 13px;
+    font-weight: 800;
+    letter-spacing: 0;
+    margin: 0 0 10px;
+    text-transform: uppercase;
+  }
+
+  .section-heading h2 {
+    font-size: clamp(30px, 5vw, 54px);
+    letter-spacing: 0;
+    line-height: 1;
+    margin: 0 0 28px;
+  }
+
+  .tool-grid {
+    display: grid;
+    gap: 14px;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .tool-card {
+    background: white;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    box-shadow: 0 18px 45px rgba(23, 32, 31, 0.05);
+    min-height: 180px;
+    padding: 22px;
+    transition:
+      border-color 160ms ease,
+      transform 160ms ease,
+      box-shadow 160ms ease;
+  }
+
+  .tool-card:hover {
+    border-color: rgba(23, 32, 31, 0.22);
+    box-shadow: 0 24px 55px rgba(23, 32, 31, 0.08);
+    transform: translateY(-3px);
+  }
+
+  .tool-card span {
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    color: var(--muted);
+    display: inline-flex;
+    font-size: 12px;
+    font-weight: 800;
+    margin-bottom: 28px;
+    padding: 5px 9px;
+    text-transform: uppercase;
+  }
+
+  .tool-card h3 {
+    font-size: 22px;
+    letter-spacing: 0;
+    margin: 0 0 9px;
+  }
+
+  .tool-card p {
+    color: var(--muted);
+    line-height: 1.55;
+    margin: 0;
+  }
+
+  .tool-card.mint {
+    border-top: 4px solid var(--mint);
+  }
+
+  .tool-card.coral {
+    border-top: 4px solid var(--coral);
+  }
+
+  .tool-card.blue {
+    border-top: 4px solid var(--blue);
+  }
+
+  .tool-card.gold {
+    border-top: 4px solid var(--gold);
+  }
+
+  @media (max-width: 900px) {
+    .tool-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (max-width: 620px) {
+    .tool-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
