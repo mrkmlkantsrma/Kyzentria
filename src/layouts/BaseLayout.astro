@@ -39,7 +39,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
         <nav class="nav" aria-label="Main navigation">
           {toolRoutes.slice(0, 6).map((tool) => <a class="focus-ring" href={tool.href}>{tool.title}</a>)}
         </nav>
-        <a class="header-cta focus-ring" href="/calculator">Launch tool</a>
+        <a class="header-cta focus-ring" href="/calculator">Open tools</a>
       </div>
     </header>
     <main>
@@ -67,7 +67,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
     top: 0;
     z-index: 20;
     border-bottom: 1px solid rgba(7, 9, 9, 0.1);
-    background: rgba(247, 247, 241, 0.92);
+    background: rgba(248, 251, 246, 0.92);
     backdrop-filter: blur(14px);
   }
 

@@ -7,29 +7,37 @@ import ToolGrid from "@/components/ToolGrid.astro";
   <section class="hero">
     <div class="shell hero-grid">
       <div class="hero-copy">
-        <p class="eyebrow">Your browser toolkit</p>
-        <h1>Your work. Minus the friction.</h1>
+        <p class="eyebrow">Free web tools</p>
+        <h1>Small tools for quick tasks.</h1>
         <p class="lede">
-          Kyzentria gives you fast, focused tools for calculations, documents,
-          images, SEO, resumes, comparisons, prompts, hosting, and developer work.
+          Kyzentria brings calculators, file helpers, SEO checks, resume matching,
+          prompt builders, and developer utilities into one clean browser workspace.
         </p>
         <div class="hero-actions">
           <a class="primary focus-ring" href="/calculator">Try calculator</a>
           <a class="secondary focus-ring" href="/compare">View comparisons</a>
         </div>
       </div>
-      <div class="hero-panel" aria-label="Kyzentria live tool console">
-        <div class="console-top">
-          <span>kyzentria.tools</span>
-          <strong>live</strong>
+      <div class="hero-panel" aria-label="Kyzentria tool summary">
+        <div class="summary-card main">
+          <span>Available now</span>
+          <strong>9</strong>
+          <p>working browser tools</p>
         </div>
-        <div class="console-line"><span>RESOLVES</span><strong>Percentages, discounts, margins</strong></div>
-        <div class="console-line"><span>FORMATS</span><strong>JSON, prompts, metadata</strong></div>
-        <div class="console-line"><span>CHECKS</span><strong>Resume keywords and SEO snippets</strong></div>
-        <div class="console-line"><span>OPTIMIZES</span><strong>Images, PDFs, hosting costs</strong></div>
-        <div class="console-foot">
-          <span>$</span>
-          <p>tools ready. choose a route.</p>
+        <div class="summary-card">
+          <span>Popular start</span>
+          <strong>Calculator</strong>
+          <p>percent, discount, margin</p>
+        </div>
+        <div class="summary-card">
+          <span>Privacy</span>
+          <strong>Local</strong>
+          <p>many tools run in your browser</p>
+        </div>
+        <div class="summary-card">
+          <span>Next focus</span>
+          <strong>Content</strong>
+          <p>SEO pages and guides</p>
         </div>
       </div>
     </div>
@@ -40,10 +48,11 @@ import ToolGrid from "@/components/ToolGrid.astro";
 <style>
   .hero {
     background:
-      radial-gradient(circle at 15% 16%, rgba(202, 255, 90, 0.28), transparent 25%),
-      linear-gradient(110deg, #f7f7f1 0%, #f7f7f1 58%, #eeeeea 100%);
+      radial-gradient(circle at 15% 16%, rgba(128, 216, 178, 0.28), transparent 26%),
+      radial-gradient(circle at 88% 22%, rgba(242, 121, 92, 0.16), transparent 24%),
+      linear-gradient(110deg, #f8fbf6 0%, #f8fbf6 60%, #f0f5ef 100%);
     border-bottom: 1px solid rgba(7, 9, 9, 0.1);
-    padding: 104px 0 74px;
+    padding: 96px 0 74px;
   }
 
   .hero-grid {
@@ -63,10 +72,10 @@ import ToolGrid from "@/components/ToolGrid.astro";
   }
 
   h1 {
-    font-size: clamp(56px, 9vw, 112px);
-    font-weight: 950;
+    font-size: clamp(50px, 8vw, 94px);
+    font-weight: 900;
     letter-spacing: 0;
-    line-height: 0.88;
+    line-height: 0.96;
     margin: 0;
     max-width: 780px;
   }
@@ -107,56 +116,58 @@ import ToolGrid from "@/components/ToolGrid.astro";
   }
 
   .hero-panel {
-    background: var(--dark-panel);
-    border: 1px solid rgba(7, 9, 9, 0.24);
+    background: rgba(255, 255, 255, 0.78);
+    border: 1px solid rgba(22, 33, 31, 0.12);
     border-radius: 8px;
-    box-shadow: 0 28px 80px rgba(7, 9, 9, 0.18);
-    color: white;
+    box-shadow: 0 28px 80px rgba(22, 33, 31, 0.08);
+    color: var(--ink);
+    display: grid;
+    gap: 12px;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    padding: 14px;
+  }
+
+  .summary-card {
+    background: white;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    min-height: 148px;
     padding: 18px;
   }
 
-  .console-top,
-  .console-line,
-  .console-foot {
-    align-items: center;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.12);
-    display: grid;
-    gap: 16px;
-    grid-template-columns: 124px 1fr;
-    min-height: 74px;
-    padding: 12px;
+  .summary-card.main {
+    background: var(--ink);
+    color: white;
+    grid-row: span 2;
   }
 
-  .console-top {
-    color: var(--mint);
-    min-height: 44px;
-  }
-
-  .console-top strong {
-    background: var(--mint);
-    border-radius: 999px;
-    color: var(--ink);
+  .summary-card span {
+    color: var(--coral);
+    display: block;
     font-size: 12px;
-    justify-self: end;
-    padding: 5px 9px;
+    font-weight: 900;
+    margin-bottom: 22px;
     text-transform: uppercase;
   }
 
-  .console-line span,
-  .console-foot span {
+  .summary-card.main span {
     color: var(--mint);
-    font-size: 13px;
-    font-weight: 950;
   }
 
-  .console-line strong {
-    font-size: 18px;
+  .summary-card strong {
+    display: block;
+    font-size: clamp(28px, 4vw, 52px);
+    line-height: 1;
   }
 
-  .console-foot {
-    border-bottom: 0;
-    color: rgba(255, 255, 255, 0.76);
-    min-height: 54px;
+  .summary-card p {
+    color: var(--muted);
+    line-height: 1.45;
+    margin: 12px 0 0;
+  }
+
+  .summary-card.main p {
+    color: rgba(255, 255, 255, 0.72);
   }
 
   @media (max-width: 860px) {
@@ -170,8 +181,7 @@ import ToolGrid from "@/components/ToolGrid.astro";
   }
 
   @media (max-width: 520px) {
-    .console-line,
-    .console-foot {
+    .hero-panel {
       grid-template-columns: 1fr;
     }
   }

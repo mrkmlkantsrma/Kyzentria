@@ -1,16 +1,16 @@
 :root {
   color-scheme: light;
-  --ink: #070909;
-  --muted: #5e6661;
-  --line: #d8ded8;
-  --paper: #f7f7f1;
+  --ink: #16211f;
+  --muted: #68736f;
+  --line: #dce5df;
+  --paper: #f8fbf6;
   --surface: #ffffff;
-  --mist: #edf0eb;
-  --mint: #caff5a;
-  --coral: #ff6d4d;
-  --blue: #5d7cff;
-  --gold: #d4b24c;
-  --dark-panel: #0b0e0d;
+  --mist: #edf6f1;
+  --mint: #80d8b2;
+  --coral: #f2795c;
+  --blue: #5276ff;
+  --gold: #d8ad4f;
+  --dark-panel: #16211f;
 }
 
 html {
@@ -72,10 +72,10 @@ textarea {
 }
 
 .tool-title {
-  font-size: clamp(44px, 8vw, 92px);
-  font-weight: 950;
+  font-size: clamp(40px, 7vw, 76px);
+  font-weight: 900;
   letter-spacing: 0;
-  line-height: 0.9;
+  line-height: 0.98;
   margin: 0 0 18px;
 }
 
