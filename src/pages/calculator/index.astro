@@ -2,25 +2,353 @@
 import BaseLayout from "@/layouts/BaseLayout.astro";
 ---
 
-<BaseLayout title="Calculator Tools - Kyzentria" description="Plan faster with Kyzentria calculator tools for money, percentages, units, and everyday decisions.">
-  <section class="shell route-page">
-    <p>Calculator</p>
-    <h1>Useful calculators are coming first.</h1>
-    <div class="route-grid">
-      <article><h2>Money</h2><span>EMI, profit, discount, margin.</span></article>
-      <article><h2>Units</h2><span>Length, weight, area, volume.</span></article>
-      <article><h2>Planning</h2><span>Dates, time, savings, goals.</span></article>
+<BaseLayout title="Calculator Tools - Kyzentria" description="Use free Kyzentria calculators for percentages, discounts, profit margins, and everyday planning.">
+  <section class="shell calculator-page">
+    <div class="intro">
+      <p>Calculator</p>
+      <h1>Percentage tools for everyday decisions.</h1>
+      <span>Calculate percentage, discounts, and profit margin directly in your browser.</span>
+    </div>
+
+    <div class="calculator-layout">
+      <section class="tool-surface" aria-labelledby="percentage-title">
+        <div class="tool-header">
+          <div>
+            <p>Live Tool</p>
+            <h2 id="percentage-title">Percentage Calculator</h2>
+          </div>
+          <span>Free</span>
+        </div>
+
+        <div class="mode-tabs" role="tablist" aria-label="Calculator mode">
+          <button class="mode active focus-ring" type="button" data-mode="percent">Percent of</button>
+          <button class="mode focus-ring" type="button" data-mode="discount">Discount</button>
+          <button class="mode focus-ring" type="button" data-mode="margin">Margin</button>
+        </div>
+
+        <form class="calc-form" id="calc-form">
+          <label>
+            <span id="first-label">What is</span>
+            <input class="focus-ring" id="first-value" type="number" value="20" step="any" inputmode="decimal" />
+          </label>
+          <label>
+            <span id="second-label">% of</span>
+            <input class="focus-ring" id="second-value" type="number" value="150" step="any" inputmode="decimal" />
+          </label>
+        </form>
+
+        <div class="result-panel" aria-live="polite">
+          <span id="result-label">Result</span>
+          <strong id="result-value">30</strong>
+          <p id="result-note">20% of 150 is 30.</p>
+        </div>
+      </section>
+
+      <aside class="money-notes" aria-label="Monetization notes">
+        <h2>Why start here?</h2>
+        <p>
+          Calculator pages are simple, useful, searchable, and easy to expand into guides,
+          affiliate comparisons, and ad-supported content later.
+        </p>
+        <div class="note-list">
+          <span>SEO route: /calculator</span>
+          <span>No backend needed</span>
+          <span>Works before ads</span>
+        </div>
+      </aside>
     </div>
   </section>
+
+  <script>
+    type ModeKey = "percent" | "discount" | "margin";
+    type ModeConfig = {
+      firstLabel: string;
+      secondLabel: string;
+      first: number;
+      second: number;
+      calculate: (first: number, second: number) => number;
+      note: (first: number, second: number, result: number) => string;
+    };
+
+    const modes: Record<ModeKey, ModeConfig> = {
+      percent: {
+        firstLabel: "What is",
+        secondLabel: "% of",
+        first: 20,
+        second: 150,
+        calculate: (a, b) => (a / 100) * b,
+        note: (a, b, result) => `${a}% of ${b} is ${format(result)}.`,
+      },
+      discount: {
+        firstLabel: "Original price",
+        secondLabel: "Discount %",
+        first: 100,
+        second: 25,
+        calculate: (price, discount) => price - (price * discount) / 100,
+        note: (price, discount, result) => `${discount}% off ${format(price)} gives a final price of ${format(result)}.`,
+      },
+      margin: {
+        firstLabel: "Revenue",
+        secondLabel: "Cost",
+        first: 100,
+        second: 60,
+        calculate: (revenue, cost) => revenue === 0 ? 0 : ((revenue - cost) / revenue) * 100,
+        note: (revenue, cost, result) => `Revenue ${format(revenue)} and cost ${format(cost)} gives a ${format(result)}% margin.`,
+      },
+    };
+
+    const buttons = document.querySelectorAll<HTMLButtonElement>(".mode");
+    const firstLabel = document.querySelector<HTMLSpanElement>("#first-label");
+    const secondLabel = document.querySelector<HTMLSpanElement>("#second-label");
+    const firstInput = document.querySelector<HTMLInputElement>("#first-value");
+    const secondInput = document.querySelector<HTMLInputElement>("#second-value");
+    const resultValue = document.querySelector<HTMLElement>("#result-value");
+    const resultNote = document.querySelector<HTMLParagraphElement>("#result-note");
+
+    if (!firstLabel || !secondLabel || !firstInput || !secondInput || !resultValue || !resultNote) {
+      throw new Error("Calculator elements were not found.");
+    }
+
+    let currentMode: ModeKey = "percent";
+
+    function format(value: number) {
+      return Number.isFinite(value)
+        ? new Intl.NumberFormat("en", { maximumFractionDigits: 2 }).format(value)
+        : "0";
+    }
+
+    function calculate() {
+      const mode = modes[currentMode];
+      const first = Number(firstInput!.value || 0);
+      const second = Number(secondInput!.value || 0);
+      const result = mode.calculate(first, second);
+      resultValue!.textContent = format(result);
+      resultNote!.textContent = mode.note(first, second, result);
+    }
+
+    buttons.forEach((button) => {
+      button.addEventListener("click", () => {
+        const nextMode = button.dataset.mode as ModeKey | undefined;
+        if (!nextMode || !(nextMode in modes)) {
+          return;
+        }
+        currentMode = nextMode;
+        const mode = modes[currentMode];
+        buttons.forEach((item) => item.classList.remove("active"));
+        button.classList.add("active");
+        firstLabel.textContent = mode.firstLabel;
+        secondLabel.textContent = mode.secondLabel;
+        firstInput.value = String(mode.first);
+        secondInput.value = String(mode.second);
+        calculate();
+      });
+    });
+
+    [firstInput, secondInput].forEach((input) => {
+      input.addEventListener("input", calculate);
+    });
+
+    calculate();
+  </script>
 </BaseLayout>
 
 <style>
-  .route-page { padding: 70px 20px 20px; }
-  p { color: var(--coral); font-size: 13px; font-weight: 850; margin: 0 0 12px; text-transform: uppercase; }
-  h1 { font-size: clamp(38px, 7vw, 72px); letter-spacing: 0; line-height: 1; margin: 0 0 36px; max-width: 820px; }
-  .route-grid { display: grid; gap: 14px; grid-template-columns: repeat(3, minmax(0, 1fr)); }
-  article { background: white; border: 1px solid var(--line); border-radius: 8px; padding: 22px; }
-  h2 { margin: 0 0 10px; }
-  span { color: var(--muted); }
-  @media (max-width: 760px) { .route-grid { grid-template-columns: 1fr; } }
+  .calculator-page {
+    padding: 70px 20px 20px;
+  }
+
+  .intro {
+    max-width: 860px;
+  }
+
+  .intro p,
+  .tool-header p {
+    color: var(--coral);
+    font-size: 13px;
+    font-weight: 850;
+    letter-spacing: 0;
+    margin: 0 0 12px;
+    text-transform: uppercase;
+  }
+
+  .intro h1 {
+    font-size: clamp(38px, 7vw, 72px);
+    letter-spacing: 0;
+    line-height: 1;
+    margin: 0 0 18px;
+  }
+
+  .intro span {
+    color: var(--muted);
+    display: block;
+    font-size: 19px;
+    line-height: 1.55;
+    max-width: 680px;
+  }
+
+  .calculator-layout {
+    align-items: start;
+    display: grid;
+    gap: 18px;
+    grid-template-columns: minmax(0, 1fr) 340px;
+    margin-top: 38px;
+  }
+
+  .tool-surface,
+  .money-notes {
+    background: white;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    box-shadow: 0 18px 45px rgba(23, 32, 31, 0.05);
+  }
+
+  .tool-surface {
+    padding: 22px;
+  }
+
+  .tool-header {
+    align-items: start;
+    display: flex;
+    gap: 18px;
+    justify-content: space-between;
+  }
+
+  .tool-header h2,
+  .money-notes h2 {
+    font-size: 26px;
+    letter-spacing: 0;
+    margin: 0;
+  }
+
+  .tool-header > span {
+    background: var(--mist);
+    border-radius: 999px;
+    color: var(--ink);
+    font-size: 13px;
+    font-weight: 850;
+    padding: 7px 10px;
+  }
+
+  .mode-tabs {
+    background: var(--mist);
+    border-radius: 8px;
+    display: grid;
+    gap: 6px;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    margin-top: 24px;
+    padding: 6px;
+  }
+
+  .mode {
+    background: transparent;
+    border: 0;
+    border-radius: 7px;
+    color: var(--muted);
+    cursor: pointer;
+    font-weight: 800;
+    min-height: 42px;
+  }
+
+  .mode.active {
+    background: white;
+    color: var(--ink);
+    box-shadow: 0 8px 24px rgba(23, 32, 31, 0.08);
+  }
+
+  .calc-form {
+    display: grid;
+    gap: 14px;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    margin-top: 22px;
+  }
+
+  label {
+    display: grid;
+    gap: 9px;
+  }
+
+  label span {
+    color: var(--muted);
+    font-size: 14px;
+    font-weight: 750;
+  }
+
+  input {
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    color: var(--ink);
+    font-size: 24px;
+    font-weight: 800;
+    min-height: 58px;
+    padding: 0 14px;
+    width: 100%;
+  }
+
+  .result-panel {
+    background: var(--ink);
+    border-radius: 8px;
+    color: white;
+    margin-top: 18px;
+    padding: 22px;
+  }
+
+  .result-panel span {
+    color: var(--mint);
+    display: block;
+    font-size: 13px;
+    font-weight: 850;
+    text-transform: uppercase;
+  }
+
+  .result-panel strong {
+    display: block;
+    font-size: clamp(42px, 8vw, 76px);
+    letter-spacing: 0;
+    line-height: 1;
+    margin-top: 8px;
+  }
+
+  .result-panel p {
+    color: rgba(255, 255, 255, 0.78);
+    font-size: 17px;
+    line-height: 1.5;
+    margin: 12px 0 0;
+  }
+
+  .money-notes {
+    padding: 22px;
+  }
+
+  .money-notes p {
+    color: var(--muted);
+    line-height: 1.6;
+  }
+
+  .note-list {
+    display: grid;
+    gap: 8px;
+    margin-top: 18px;
+  }
+
+  .note-list span {
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    color: var(--muted);
+    font-size: 14px;
+    font-weight: 750;
+    padding: 11px;
+  }
+
+  @media (max-width: 900px) {
+    .calculator-layout,
+    .calc-form {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (max-width: 560px) {
+    .mode-tabs {
+      grid-template-columns: 1fr;
+    }
+  }
 </style>
