@@ -6,7 +6,7 @@ import { toolRoutes } from "@/data/tools";
   <div class="shell">
     <div class="section-heading">
       <p>Tool Routes</p>
-      <h2 id="tools-title">Build one useful page at a time.</h2>
+      <h2 id="tools-title">Use focused tools in one place.</h2>
     </div>
     <div class="tool-grid">
       {
@@ -15,6 +15,7 @@ import { toolRoutes } from "@/data/tools";
             <span>{tool.status}</span>
             <h3>{tool.title}</h3>
             <p>{tool.description}</p>
+            <small>Open route -></small>
           </a>
         ))
       }
@@ -24,7 +25,7 @@ import { toolRoutes } from "@/data/tools";
 
 <style>
   .tool-band {
-    padding: 70px 0 20px;
+    padding: 84px 0 20px;
   }
 
   .section-heading {
@@ -32,16 +33,17 @@ import { toolRoutes } from "@/data/tools";
   }
 
   .section-heading p {
-    color: var(--coral);
+    color: var(--ink);
     font-size: 13px;
-    font-weight: 800;
+    font-weight: 950;
     letter-spacing: 0;
     margin: 0 0 10px;
     text-transform: uppercase;
   }
 
   .section-heading h2 {
-    font-size: clamp(30px, 5vw, 54px);
+    font-size: clamp(40px, 7vw, 78px);
+    font-weight: 950;
     letter-spacing: 0;
     line-height: 1;
     margin: 0 0 28px;
@@ -54,12 +56,13 @@ import { toolRoutes } from "@/data/tools";
   }
 
   .tool-card {
-    background: white;
-    border: 1px solid var(--line);
+    background: var(--surface);
+    border: 1px solid #cfd6cf;
     border-radius: 8px;
-    box-shadow: 0 18px 45px rgba(23, 32, 31, 0.05);
-    min-height: 180px;
+    box-shadow: 0 20px 70px rgba(7, 9, 9, 0.05);
+    min-height: 214px;
     padding: 22px;
+    position: relative;
     transition:
       border-color 160ms ease,
       transform 160ms ease,
@@ -67,18 +70,19 @@ import { toolRoutes } from "@/data/tools";
   }
 
   .tool-card:hover {
-    border-color: rgba(23, 32, 31, 0.22);
-    box-shadow: 0 24px 55px rgba(23, 32, 31, 0.08);
+    border-color: rgba(7, 9, 9, 0.35);
+    box-shadow: 0 28px 80px rgba(7, 9, 9, 0.1);
     transform: translateY(-3px);
   }
 
   .tool-card span {
-    border: 1px solid var(--line);
+    background: var(--mint);
+    border: 0;
     border-radius: 999px;
     color: var(--muted);
     display: inline-flex;
     font-size: 12px;
-    font-weight: 800;
+    font-weight: 950;
     margin-bottom: 28px;
     padding: 5px 9px;
     text-transform: uppercase;
@@ -86,6 +90,7 @@ import { toolRoutes } from "@/data/tools";
 
   .tool-card h3 {
     font-size: 22px;
+    font-weight: 950;
     letter-spacing: 0;
     margin: 0 0 9px;
   }
@@ -94,6 +99,16 @@ import { toolRoutes } from "@/data/tools";
     color: var(--muted);
     line-height: 1.55;
     margin: 0;
+  }
+
+  .tool-card small {
+    bottom: 20px;
+    color: var(--ink);
+    font-size: 13px;
+    font-weight: 950;
+    left: 22px;
+    position: absolute;
+    text-transform: uppercase;
   }
 
   .tool-card.mint {

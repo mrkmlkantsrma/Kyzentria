@@ -39,6 +39,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
         <nav class="nav" aria-label="Main navigation">
           {toolRoutes.slice(0, 6).map((tool) => <a class="focus-ring" href={tool.href}>{tool.title}</a>)}
         </nav>
+        <a class="header-cta focus-ring" href="/calculator">Launch tool</a>
       </div>
     </header>
     <main>
@@ -65,8 +66,8 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
     position: sticky;
     top: 0;
     z-index: 20;
-    border-bottom: 1px solid rgba(23, 32, 31, 0.09);
-    background: rgba(251, 252, 249, 0.9);
+    border-bottom: 1px solid rgba(7, 9, 9, 0.1);
+    background: rgba(247, 247, 241, 0.92);
     backdrop-filter: blur(14px);
   }
 
@@ -82,7 +83,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
     align-items: center;
     display: inline-flex;
     font-size: 20px;
-    font-weight: 800;
+    font-weight: 950;
     gap: 10px;
     letter-spacing: 0;
   }
@@ -110,13 +111,26 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
     border-radius: 8px;
     color: var(--muted);
     font-size: 14px;
-    font-weight: 650;
+    font-weight: 850;
     padding: 10px 11px;
   }
 
   .nav a:hover {
     background: var(--mist);
     color: var(--ink);
+  }
+
+  .header-cta {
+    align-items: center;
+    background: var(--ink);
+    border-radius: 8px;
+    color: white;
+    display: inline-flex;
+    font-size: 14px;
+    font-weight: 900;
+    min-height: 42px;
+    padding: 0 14px;
+    white-space: nowrap;
   }
 
   .site-footer {
@@ -145,7 +159,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
 
   .footer-links a {
     color: var(--muted);
-    font-weight: 650;
+    font-weight: 850;
   }
 
   @media (max-width: 760px) {
@@ -160,6 +174,10 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
 
     .nav {
       justify-content: flex-start;
+    }
+
+    .header-cta {
+      display: none;
     }
   }
 </style>
