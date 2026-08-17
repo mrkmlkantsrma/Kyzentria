@@ -45,7 +45,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
         </nav>
         <div class="header-actions">
           <button class="theme-toggle focus-ring" id="theme-toggle" type="button" aria-label="Toggle day and night theme">
-            <span aria-hidden="true"></span>
+            <span class="theme-icon" aria-hidden="true">☾</span>
           </button>
           <a class="header-cta focus-ring" href="/calculator">Open tools</a>
         </div>
@@ -72,6 +72,10 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
       const setToggleLabel = () => {
         const isLight = document.documentElement.dataset.theme === "light";
         toggle?.setAttribute("title", isLight ? "Switch to night mode" : "Switch to day mode");
+        const icon = toggle?.querySelector(".theme-icon");
+        if (icon) {
+          icon.textContent = isLight ? "☀" : "☾";
+        }
       };
 
       toggle?.addEventListener("click", () => {
@@ -169,26 +173,22 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
   }
 
   .theme-toggle {
+    align-items: center;
     background: color-mix(in srgb, var(--surface), transparent 12%);
     border: 1px solid var(--line);
-    border-radius: 999px;
+    border-radius: 8px;
+    color: var(--ink);
     cursor: pointer;
-    height: 42px;
+    display: inline-flex;
+    font-size: 18px;
     padding: 4px;
-    width: 72px;
+    height: 42px;
+    justify-content: center;
+    width: 42px;
   }
 
-  .theme-toggle span {
-    background: var(--mint);
-    border-radius: 999px;
-    display: block;
-    height: 32px;
-    transition: transform 220ms ease;
-    width: 32px;
-  }
-
-  :global([data-theme="light"]) .theme-toggle span {
-    transform: translateX(28px);
+  .theme-icon {
+    line-height: 1;
   }
 
   .header-cta {

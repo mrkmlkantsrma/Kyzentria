@@ -8,13 +8,14 @@ import ToolGrid from "@/components/ToolGrid.astro";
     <div class="ambient ambient-a"></div>
     <div class="ambient ambient-b"></div>
     <div class="shell hero-inner">
-      <div class="tool-orb reveal" aria-label="Kyzentria tool core">
-        <span>your web</span>
-        <strong>Toolkit</strong>
+      <div class="tool-status reveal" aria-label="Kyzentria tool status">
+        <span class="status-dot"></span>
+        <strong class="mono">9 tools online</strong>
+        <span class="mono">browser workspace</span>
       </div>
       <div class="hero-copy reveal">
         <p class="eyebrow mono">Browser tools infrastructure</p>
-        <h1>Useful tools. <span class="serif-accent">Ready</span> when you are.</h1>
+        <h1>Useful tools for everyday web work.</h1>
         <p class="lede">
           Kyzentria is a fast static workspace for calculators, files, SEO checks,
           resume matching, prompts, comparisons, hosting estimates, and developer utilities.
@@ -125,7 +126,7 @@ import ToolGrid from "@/components/ToolGrid.astro";
       radial-gradient(circle at 50% 18%, rgba(55, 224, 160, 0.16), transparent 18rem),
       var(--paper);
     border-bottom: 1px solid var(--line);
-    min-height: calc(100vh - 72px);
+    min-height: 760px;
     overflow: hidden;
     position: relative;
   }
@@ -134,7 +135,7 @@ import ToolGrid from "@/components/ToolGrid.astro";
     align-items: center;
     display: grid;
     justify-items: center;
-    min-height: calc(100vh - 72px);
+    min-height: 760px;
     padding-bottom: 34px;
     padding-top: 34px;
     position: relative;
@@ -142,68 +143,59 @@ import ToolGrid from "@/components/ToolGrid.astro";
   }
 
   .ambient {
-    border: 1px solid rgba(55, 224, 160, 0.28);
-    border-radius: 999px;
-    position: absolute;
-  }
-
-  .ambient::before {
     background: var(--mint);
     border-radius: 999px;
-    content: "";
     height: 8px;
-    left: -4px;
+    opacity: 0.78;
     position: absolute;
-    top: -4px;
     width: 8px;
   }
 
   .ambient-a {
     animation: drift 9s ease-in-out infinite;
-    height: 46px;
     left: 10%;
     top: 12%;
-    width: 46px;
   }
 
   .ambient-b {
     animation: drift 12s ease-in-out infinite reverse;
     bottom: 10%;
-    height: 34px;
     right: 18%;
-    width: 34px;
   }
 
-  .tool-orb {
+  .tool-status {
     align-items: center;
-    animation: pulseGlow 5s ease-in-out infinite;
-    background:
-      radial-gradient(circle at 34% 28%, rgba(55, 224, 160, 0.24), transparent 34%),
-      radial-gradient(circle at 64% 70%, rgba(19, 71, 49, 0.9), transparent 60%),
-      #050d09;
-    border: 1px solid rgba(55, 224, 160, 0.34);
+    background: color-mix(in srgb, var(--surface), transparent 8%);
+    border: 1px solid var(--line);
     border-radius: 999px;
-    display: flex;
-    flex-direction: column;
-    height: clamp(176px, 22vw, 270px);
+    box-shadow: 0 20px 60px rgba(55, 224, 160, 0.08);
+    display: inline-flex;
+    gap: 12px;
+    min-height: 48px;
     justify-content: center;
-    margin-bottom: 34px;
-    width: clamp(176px, 22vw, 270px);
+    margin-bottom: 32px;
+    padding: 0 18px;
   }
 
-  .tool-orb span {
+  .tool-status span,
+  .tool-status strong {
     color: var(--muted);
-    font-size: 13px;
-    font-weight: 900;
-    letter-spacing: 0.08em;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 0.12em;
     text-transform: uppercase;
   }
 
-  .tool-orb strong {
-    color: #fff;
-    font-size: clamp(30px, 4vw, 48px);
-    line-height: 1;
-    margin-top: 12px;
+  .tool-status strong {
+    color: var(--ink);
+  }
+
+  .status-dot {
+    animation: pulseGlow 3.5s ease-in-out infinite;
+    background: var(--mint);
+    border-radius: 999px;
+    height: 9px;
+    width: 9px;
   }
 
   .eyebrow {
@@ -217,10 +209,10 @@ import ToolGrid from "@/components/ToolGrid.astro";
 
   h1 {
     color: var(--ink);
-    font-size: clamp(54px, 9vw, 118px);
+    font-size: clamp(42px, 7vw, 84px);
     font-weight: 950;
     letter-spacing: 0;
-    line-height: 0.88;
+    line-height: 0.96;
     margin: 0 auto;
     max-width: 880px;
   }
@@ -321,7 +313,7 @@ import ToolGrid from "@/components/ToolGrid.astro";
   .workflow-copy h2,
   .section-head h2,
   .cta-inner h2 {
-    font-size: clamp(40px, 7vw, 82px);
+    font-size: clamp(34px, 6vw, 68px);
     font-weight: 950;
     letter-spacing: 0;
     line-height: 0.95;
@@ -469,7 +461,7 @@ import ToolGrid from "@/components/ToolGrid.astro";
   .metric-grid strong {
     color: var(--ink);
     display: block;
-    font-size: clamp(38px, 6vw, 76px);
+    font-size: clamp(34px, 5vw, 62px);
     line-height: 1;
     margin-top: 24px;
   }
