@@ -2,13 +2,13 @@
 import { toolRoutes } from "@/data/tools";
 ---
 
-<section class="tool-band" aria-labelledby="tools-title">
+<section class="tool-band" id="tools" aria-labelledby="tools-title">
   <div class="shell">
-    <div class="section-heading">
-      <p>Tool Routes</p>
+    <div class="section-heading reveal">
+      <p class="mono">Tool Routes</p>
       <h2 id="tools-title">Pick a tool and finish the task.</h2>
     </div>
-    <div class="tool-grid">
+    <div class="tool-grid reveal">
       {
         toolRoutes.map((tool) => (
           <a class={`tool-card ${tool.accent} focus-ring`} href={tool.href}>
@@ -25,7 +25,9 @@ import { toolRoutes } from "@/data/tools";
 
 <style>
   .tool-band {
-    padding: 84px 0 20px;
+    background: color-mix(in srgb, var(--paper), var(--brand-green) 8%);
+    border-top: 1px solid var(--line);
+    padding: 100px 0 30px;
   }
 
   .section-heading {
@@ -33,7 +35,7 @@ import { toolRoutes } from "@/data/tools";
   }
 
   .section-heading p {
-    color: var(--ink);
+    color: var(--mint);
     font-size: 13px;
     font-weight: 950;
     letter-spacing: 0;
@@ -42,8 +44,8 @@ import { toolRoutes } from "@/data/tools";
   }
 
   .section-heading h2 {
-    font-size: clamp(34px, 6vw, 64px);
-    font-weight: 900;
+    font-size: clamp(40px, 7vw, 82px);
+    font-weight: 950;
     letter-spacing: 0;
     line-height: 1;
     margin: 0 0 28px;
@@ -56,12 +58,14 @@ import { toolRoutes } from "@/data/tools";
   }
 
   .tool-card {
-    background: var(--surface);
-    border: 1px solid #cfd6cf;
+    background:
+      linear-gradient(180deg, color-mix(in srgb, var(--surface), transparent 4%), color-mix(in srgb, var(--surface), var(--brand-green) 14%));
+    border: 1px solid var(--line);
     border-radius: 8px;
-    box-shadow: 0 20px 70px rgba(7, 9, 9, 0.05);
-    min-height: 214px;
-    padding: 22px;
+    box-shadow: 0 24px 80px rgba(0, 0, 0, 0.14);
+    min-height: 248px;
+    overflow: hidden;
+    padding: 24px;
     position: relative;
     transition:
       border-color 160ms ease,
@@ -70,16 +74,32 @@ import { toolRoutes } from "@/data/tools";
   }
 
   .tool-card:hover {
-    border-color: rgba(7, 9, 9, 0.35);
-    box-shadow: 0 28px 80px rgba(7, 9, 9, 0.1);
-    transform: translateY(-3px);
+    border-color: rgba(55, 224, 160, 0.5);
+    box-shadow: 0 28px 90px rgba(55, 224, 160, 0.1);
+    transform: translateY(-5px);
+  }
+
+  .tool-card::after {
+    background: radial-gradient(circle, rgba(55, 224, 160, 0.24), transparent 62%);
+    content: "";
+    height: 160px;
+    opacity: 0;
+    position: absolute;
+    right: -70px;
+    top: -70px;
+    transition: opacity 180ms ease;
+    width: 160px;
+  }
+
+  .tool-card:hover::after {
+    opacity: 1;
   }
 
   .tool-card span {
     background: var(--mint);
     border: 0;
     border-radius: 999px;
-    color: var(--muted);
+    color: var(--paper);
     display: inline-flex;
     font-size: 12px;
     font-weight: 950;
@@ -89,7 +109,8 @@ import { toolRoutes } from "@/data/tools";
   }
 
   .tool-card h3 {
-    font-size: 22px;
+    color: var(--ink);
+    font-size: 26px;
     font-weight: 950;
     letter-spacing: 0;
     margin: 0 0 9px;
@@ -103,7 +124,7 @@ import { toolRoutes } from "@/data/tools";
 
   .tool-card small {
     bottom: 20px;
-    color: var(--ink);
+    color: var(--mint);
     font-size: 13px;
     font-weight: 950;
     left: 22px;
@@ -112,19 +133,19 @@ import { toolRoutes } from "@/data/tools";
   }
 
   .tool-card.mint {
-    border-top: 4px solid var(--mint);
+    border-top: 3px solid var(--mint);
   }
 
   .tool-card.coral {
-    border-top: 4px solid var(--coral);
+    border-top: 3px solid var(--coral);
   }
 
   .tool-card.blue {
-    border-top: 4px solid var(--blue);
+    border-top: 3px solid var(--blue);
   }
 
   .tool-card.gold {
-    border-top: 4px solid var(--gold);
+    border-top: 3px solid var(--gold);
   }
 
   @media (max-width: 900px) {

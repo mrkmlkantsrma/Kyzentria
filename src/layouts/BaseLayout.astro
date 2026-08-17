@@ -28,6 +28,10 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
     <meta property="og:type" content="website" />
     <meta property="og:url" content={canonical} />
     <meta name="twitter:card" content="summary_large_image" />
+    <script is:inline>
+      const savedTheme = localStorage.getItem("kyzentria-theme");
+      document.documentElement.dataset.theme = savedTheme || "dark";
+    </script>
   </head>
   <body>
     <header class="site-header">
@@ -39,7 +43,12 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
         <nav class="nav" aria-label="Main navigation">
           {toolRoutes.slice(0, 6).map((tool) => <a class="focus-ring" href={tool.href}>{tool.title}</a>)}
         </nav>
-        <a class="header-cta focus-ring" href="/calculator">Open tools</a>
+        <div class="header-actions">
+          <button class="theme-toggle focus-ring" id="theme-toggle" type="button" aria-label="Toggle day and night theme">
+            <span aria-hidden="true"></span>
+          </button>
+          <a class="header-cta focus-ring" href="/calculator">Open tools</a>
+        </div>
       </div>
     </header>
     <main>
@@ -58,6 +67,39 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
         </div>
       </div>
     </footer>
+    <script is:inline>
+      const toggle = document.getElementById("theme-toggle");
+      const setToggleLabel = () => {
+        const isLight = document.documentElement.dataset.theme === "light";
+        toggle?.setAttribute("title", isLight ? "Switch to night mode" : "Switch to day mode");
+      };
+
+      toggle?.addEventListener("click", () => {
+        const nextTheme = document.documentElement.dataset.theme === "light" ? "dark" : "light";
+        document.documentElement.dataset.theme = nextTheme;
+        localStorage.setItem("kyzentria-theme", nextTheme);
+        setToggleLabel();
+      });
+      setToggleLabel();
+
+      const reveals = document.querySelectorAll(".reveal");
+      if ("IntersectionObserver" in window) {
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add("is-visible");
+                observer.unobserve(entry.target);
+              }
+            });
+          },
+          { threshold: 0.16 },
+        );
+        reveals.forEach((item) => observer.observe(item));
+      } else {
+        reveals.forEach((item) => item.classList.add("is-visible"));
+      }
+    </script>
   </body>
 </html>
 
@@ -66,8 +108,8 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
     position: sticky;
     top: 0;
     z-index: 20;
-    border-bottom: 1px solid rgba(7, 9, 9, 0.1);
-    background: rgba(248, 251, 246, 0.92);
+    border-bottom: 1px solid var(--line);
+    background: color-mix(in srgb, var(--paper), transparent 8%);
     backdrop-filter: blur(14px);
   }
 
@@ -90,9 +132,9 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
 
   .brand-mark {
     align-items: center;
-    background: var(--ink);
+    background: var(--mint);
     border-radius: 8px;
-    color: white;
+    color: var(--paper);
     display: inline-flex;
     height: 34px;
     justify-content: center;
@@ -120,11 +162,40 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
     color: var(--ink);
   }
 
+  .header-actions {
+    align-items: center;
+    display: flex;
+    gap: 10px;
+  }
+
+  .theme-toggle {
+    background: color-mix(in srgb, var(--surface), transparent 12%);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    cursor: pointer;
+    height: 42px;
+    padding: 4px;
+    width: 72px;
+  }
+
+  .theme-toggle span {
+    background: var(--mint);
+    border-radius: 999px;
+    display: block;
+    height: 32px;
+    transition: transform 220ms ease;
+    width: 32px;
+  }
+
+  :global([data-theme="light"]) .theme-toggle span {
+    transform: translateX(28px);
+  }
+
   .header-cta {
     align-items: center;
-    background: var(--ink);
+    background: var(--mint);
     border-radius: 8px;
-    color: white;
+    color: var(--paper);
     display: inline-flex;
     font-size: 14px;
     font-weight: 900;

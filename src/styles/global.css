@@ -1,16 +1,37 @@
 :root {
+  color-scheme: dark;
+  --ink: #f4fbf6;
+  --muted: #91a49a;
+  --line: rgba(63, 226, 165, 0.18);
+  --paper: #020806;
+  --surface: #07110d;
+  --surface-2: #0b1913;
+  --mist: rgba(19, 71, 49, 0.42);
+  --mint: #37e0a0;
+  --coral: #a8f5cf;
+  --blue: #65e7b4;
+  --gold: #b7e88d;
+  --dark-panel: #050d09;
+  --brand-green: #134731;
+  --glow: rgba(55, 224, 160, 0.38);
+}
+
+:root[data-theme="light"] {
   color-scheme: light;
-  --ink: #16211f;
-  --muted: #68736f;
-  --line: #dce5df;
-  --paper: #f8fbf6;
+  --ink: #10211a;
+  --muted: #5d6f66;
+  --line: #cfe0d7;
+  --paper: #f7fbf5;
   --surface: #ffffff;
-  --mist: #edf6f1;
-  --mint: #80d8b2;
-  --coral: #f2795c;
-  --blue: #5276ff;
-  --gold: #d8ad4f;
-  --dark-panel: #16211f;
+  --surface-2: #edf6f1;
+  --mist: #e5f3ec;
+  --mint: #134731;
+  --coral: #257756;
+  --blue: #257756;
+  --gold: #7aa35f;
+  --dark-panel: #134731;
+  --brand-green: #134731;
+  --glow: rgba(19, 71, 49, 0.18);
 }
 
 html {
@@ -22,6 +43,10 @@ html {
 }
 
 body {
+  background:
+    radial-gradient(circle at 10% 8%, rgba(55, 224, 160, 0.12), transparent 22rem),
+    radial-gradient(circle at 78% 0%, rgba(19, 71, 49, 0.46), transparent 26rem),
+    var(--paper);
   margin: 0;
   min-width: 320px;
 }
@@ -45,13 +70,36 @@ textarea {
 
 .shell {
   margin: 0 auto;
-  max-width: 1160px;
+  max-width: 1240px;
   padding: 0 20px;
 }
 
 .focus-ring:focus-visible {
-  outline: 3px solid color-mix(in srgb, var(--blue), transparent 45%);
+  outline: 3px solid color-mix(in srgb, var(--mint), transparent 45%);
   outline-offset: 3px;
+}
+
+.mono {
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+}
+
+.serif-accent {
+  font-family: Georgia, "Times New Roman", serif;
+  font-style: italic;
+  font-weight: 500;
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition:
+    opacity 700ms ease,
+    transform 700ms ease;
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .tool-page {
@@ -63,7 +111,7 @@ textarea {
 }
 
 .tool-kicker {
-  color: var(--ink);
+  color: var(--mint);
   font-size: 13px;
   font-weight: 900;
   letter-spacing: 0;
@@ -98,9 +146,9 @@ textarea {
 .tool-surface,
 .tool-aside {
   background: var(--surface);
-  border: 1px solid #cfd6cf;
+  border: 1px solid var(--line);
   border-radius: 8px;
-  box-shadow: 0 20px 70px rgba(7, 9, 9, 0.06);
+  box-shadow: 0 26px 80px rgba(0, 0, 0, 0.16);
   padding: 22px;
 }
 
@@ -150,6 +198,7 @@ textarea {
 .tool-field input,
 .tool-field select,
 .tool-field textarea {
+  background: color-mix(in srgb, var(--surface-2), transparent 18%);
   border: 1px solid var(--line);
   border-radius: 8px;
   color: var(--ink);
@@ -176,13 +225,14 @@ textarea {
 }
 
 .tool-button.secondary {
-  background: white;
+  background: transparent;
   border: 1px solid var(--line);
   color: var(--ink);
 }
 
 .result-box {
   background: var(--dark-panel);
+  border: 1px solid var(--line);
   border-radius: 8px;
   color: white;
   margin-top: 18px;
@@ -236,6 +286,60 @@ textarea {
   border-radius: 8px;
   margin-top: 16px;
   padding: 16px;
+}
+
+@keyframes pulseGlow {
+  0%,
+  100% {
+    box-shadow:
+      0 0 0 1px rgba(55, 224, 160, 0.24),
+      0 0 40px rgba(55, 224, 160, 0.18),
+      inset 0 0 42px rgba(55, 224, 160, 0.12);
+    transform: translateY(0) scale(1);
+  }
+  50% {
+    box-shadow:
+      0 0 0 1px rgba(55, 224, 160, 0.5),
+      0 0 72px rgba(55, 224, 160, 0.32),
+      inset 0 0 62px rgba(55, 224, 160, 0.2);
+    transform: translateY(-6px) scale(1.02);
+  }
+}
+
+@keyframes drift {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(18px, -14px, 0);
+  }
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes scanLine {
+  from {
+    transform: translateY(-100%);
+  }
+  to {
+    transform: translateY(100%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 1ms !important;
+    scroll-behavior: auto !important;
+    transition-duration: 1ms !important;
+  }
+
+  .reveal {
+    opacity: 1;
+    transform: none;
+  }
 }
 
 @media (max-width: 900px) {

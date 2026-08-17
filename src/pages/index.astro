@@ -5,93 +5,244 @@ import ToolGrid from "@/components/ToolGrid.astro";
 
 <BaseLayout>
   <section class="hero">
-    <div class="shell hero-grid">
-      <div class="hero-copy">
-        <p class="eyebrow">Free web tools</p>
-        <h1>Small tools for quick tasks.</h1>
+    <div class="ambient ambient-a"></div>
+    <div class="ambient ambient-b"></div>
+    <div class="shell hero-inner">
+      <div class="tool-orb reveal" aria-label="Kyzentria tool core">
+        <span>your web</span>
+        <strong>Toolkit</strong>
+      </div>
+      <div class="hero-copy reveal">
+        <p class="eyebrow mono">Browser tools infrastructure</p>
+        <h1>Useful tools. <span class="serif-accent">Ready</span> when you are.</h1>
         <p class="lede">
-          Kyzentria brings calculators, file helpers, SEO checks, resume matching,
-          prompt builders, and developer utilities into one clean browser workspace.
+          Kyzentria is a fast static workspace for calculators, files, SEO checks,
+          resume matching, prompts, comparisons, hosting estimates, and developer utilities.
         </p>
         <div class="hero-actions">
-          <a class="primary focus-ring" href="/calculator">Try calculator</a>
-          <a class="secondary focus-ring" href="/compare">View comparisons</a>
+          <a class="primary focus-ring" href="/calculator">Start with calculator</a>
+          <a class="secondary focus-ring" href="#tools">See all tools</a>
         </div>
       </div>
-      <div class="hero-panel" aria-label="Kyzentria tool summary">
-        <div class="summary-card main">
-          <span>Available now</span>
-          <strong>9</strong>
-          <p>working browser tools</p>
+      <p class="scroll-cue mono">Scroll</p>
+    </div>
+  </section>
+
+  <section class="verb-strip" aria-label="Kyzentria capabilities">
+    <div class="shell verb-grid reveal">
+      <span>Calculates</span>
+      <span>Formats</span>
+      <span>Checks</span>
+      <span>Optimizes</span>
+      <span>Compares</span>
+      <span>Builds</span>
+    </div>
+  </section>
+
+  <section class="workflow-section">
+    <div class="shell workflow-grid">
+      <div class="workflow-copy reveal">
+        <p class="eyebrow mono">Tool workspace</p>
+        <h2>Open one route. Finish one job.</h2>
+        <p>
+          Each Kyzentria page is built around a small result: calculate a value,
+          inspect a file, preview metadata, score options, or build a reusable prompt.
+        </p>
+        <ul>
+          <li><strong>Pick</strong> the tool route for the task.</li>
+          <li><strong>Use</strong> the browser-side function.</li>
+          <li><strong>Expand</strong> with guides, SEO pages, and monetization later.</li>
+        </ul>
+      </div>
+      <div class="terminal-card reveal" aria-label="Live tool feed">
+        <div class="terminal-top">
+          <span></span><span></span><span></span>
+          <strong class="mono">kyzentria.tools - live</strong>
         </div>
-        <div class="summary-card">
-          <span>Popular start</span>
-          <strong>Calculator</strong>
-          <p>percent, discount, margin</p>
-        </div>
-        <div class="summary-card">
-          <span>Privacy</span>
-          <strong>Local</strong>
-          <p>many tools run in your browser</p>
-        </div>
-        <div class="summary-card">
-          <span>Next focus</span>
-          <strong>Content</strong>
-          <p>SEO pages and guides</p>
+        <div class="terminal-body mono">
+          <p><span>14:02:11</span> calculator opened - percent mode ready</p>
+          <p><span>14:02:17</span> image optimizer waiting for local file</p>
+          <p><span>14:02:24</span> seo preview validated title length</p>
+          <p><span>14:02:31</span> json formatter parsed clean input</p>
+          <p><span>14:02:39</span> resume checker matched 6 keywords</p>
+          <p><span>14:02:45</span> hosting estimator calculated yearly cost</p>
+          <p><span>$</span> choose a tool route...</p>
         </div>
       </div>
     </div>
   </section>
+
   <ToolGrid />
+
+  <section class="metrics-section">
+    <div class="shell">
+      <div class="section-head reveal">
+        <p class="eyebrow mono">Project base</p>
+        <h2>Built for static growth.</h2>
+      </div>
+      <div class="metric-grid reveal">
+        <article>
+          <span class="mono">TOOLS LIVE</span>
+          <strong>9</strong>
+          <p>Core browser utilities are ready as route pages.</p>
+        </article>
+        <article>
+          <span class="mono">BACKEND</span>
+          <strong>0</strong>
+          <p>No database or server is needed for the first phase.</p>
+        </article>
+        <article>
+          <span class="mono">DEPLOYMENT</span>
+          <strong>Pages</strong>
+          <p>Cloudflare Pages deploys from GitHub on every push.</p>
+        </article>
+        <article>
+          <span class="mono">REVENUE</span>
+          <strong>Later</strong>
+          <p>Affiliate guides, ads, and sponsored placements come after traffic.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-section">
+    <div class="pattern" aria-hidden="true"></div>
+    <div class="shell cta-inner reveal">
+      <h2>Ready to make the next tool useful?</h2>
+      <p>Start with high-intent pages, then build content and monetization around what people actually use.</p>
+      <div class="hero-actions">
+        <a class="primary focus-ring" href="/seo">Open SEO preview</a>
+        <a class="secondary focus-ring" href="/hosting">Estimate hosting</a>
+      </div>
+    </div>
+  </section>
 </BaseLayout>
 
 <style>
   .hero {
     background:
-      radial-gradient(circle at 15% 16%, rgba(128, 216, 178, 0.28), transparent 26%),
-      radial-gradient(circle at 88% 22%, rgba(242, 121, 92, 0.16), transparent 24%),
-      linear-gradient(110deg, #f8fbf6 0%, #f8fbf6 60%, #f0f5ef 100%);
-    border-bottom: 1px solid rgba(7, 9, 9, 0.1);
-    padding: 96px 0 74px;
+      linear-gradient(180deg, rgba(19, 71, 49, 0.34), transparent 34%),
+      radial-gradient(circle at 50% 18%, rgba(55, 224, 160, 0.16), transparent 18rem),
+      var(--paper);
+    border-bottom: 1px solid var(--line);
+    min-height: calc(100vh - 72px);
+    overflow: hidden;
+    position: relative;
   }
 
-  .hero-grid {
+  .hero-inner {
     align-items: center;
     display: grid;
-    gap: 48px;
-    grid-template-columns: minmax(0, 1.08fr) minmax(320px, 0.92fr);
+    justify-items: center;
+    min-height: calc(100vh - 72px);
+    padding-bottom: 34px;
+    padding-top: 34px;
+    position: relative;
+    text-align: center;
+  }
+
+  .ambient {
+    border: 1px solid rgba(55, 224, 160, 0.28);
+    border-radius: 999px;
+    position: absolute;
+  }
+
+  .ambient::before {
+    background: var(--mint);
+    border-radius: 999px;
+    content: "";
+    height: 8px;
+    left: -4px;
+    position: absolute;
+    top: -4px;
+    width: 8px;
+  }
+
+  .ambient-a {
+    animation: drift 9s ease-in-out infinite;
+    height: 46px;
+    left: 10%;
+    top: 12%;
+    width: 46px;
+  }
+
+  .ambient-b {
+    animation: drift 12s ease-in-out infinite reverse;
+    bottom: 10%;
+    height: 34px;
+    right: 18%;
+    width: 34px;
+  }
+
+  .tool-orb {
+    align-items: center;
+    animation: pulseGlow 5s ease-in-out infinite;
+    background:
+      radial-gradient(circle at 34% 28%, rgba(55, 224, 160, 0.24), transparent 34%),
+      radial-gradient(circle at 64% 70%, rgba(19, 71, 49, 0.9), transparent 60%),
+      #050d09;
+    border: 1px solid rgba(55, 224, 160, 0.34);
+    border-radius: 999px;
+    display: flex;
+    flex-direction: column;
+    height: clamp(176px, 22vw, 270px);
+    justify-content: center;
+    margin-bottom: 34px;
+    width: clamp(176px, 22vw, 270px);
+  }
+
+  .tool-orb span {
+    color: var(--muted);
+    font-size: 13px;
+    font-weight: 900;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .tool-orb strong {
+    color: #fff;
+    font-size: clamp(30px, 4vw, 48px);
+    line-height: 1;
+    margin-top: 12px;
   }
 
   .eyebrow {
-    color: var(--coral);
+    color: var(--mint);
     font-size: 13px;
-    font-weight: 950;
-    letter-spacing: 0;
-    margin: 0 0 14px;
+    font-weight: 900;
+    letter-spacing: 0.18em;
+    margin: 0 0 28px;
     text-transform: uppercase;
   }
 
   h1 {
-    font-size: clamp(50px, 8vw, 94px);
-    font-weight: 900;
+    color: var(--ink);
+    font-size: clamp(54px, 9vw, 118px);
+    font-weight: 950;
     letter-spacing: 0;
-    line-height: 0.96;
-    margin: 0;
-    max-width: 780px;
+    line-height: 0.88;
+    margin: 0 auto;
+    max-width: 880px;
+  }
+
+  h1 .serif-accent,
+  .workflow-copy h2 .serif-accent {
+    color: var(--mint);
   }
 
   .lede {
     color: var(--muted);
-    font-size: clamp(19px, 2.4vw, 23px);
-    line-height: 1.55;
-    margin: 26px 0 0;
-    max-width: 660px;
+    font-size: clamp(18px, 2.2vw, 22px);
+    line-height: 1.6;
+    margin: 26px auto 0;
+    max-width: 760px;
   }
 
   .hero-actions {
     display: flex;
     flex-wrap: wrap;
     gap: 12px;
+    justify-content: center;
     margin-top: 32px;
   }
 
@@ -100,89 +251,303 @@ import ToolGrid from "@/components/ToolGrid.astro";
     align-items: center;
     border-radius: 8px;
     display: inline-flex;
-    font-weight: 950;
-    min-height: 48px;
-    padding: 0 18px;
+    font-weight: 900;
+    min-height: 54px;
+    padding: 0 22px;
   }
 
   .primary {
     background: var(--ink);
-    color: white;
+    color: var(--paper);
   }
 
   .secondary {
     background: transparent;
-    border: 1px solid rgba(7, 9, 9, 0.18);
-  }
-
-  .hero-panel {
-    background: rgba(255, 255, 255, 0.78);
-    border: 1px solid rgba(22, 33, 31, 0.12);
-    border-radius: 8px;
-    box-shadow: 0 28px 80px rgba(22, 33, 31, 0.08);
-    color: var(--ink);
-    display: grid;
-    gap: 12px;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    padding: 14px;
-  }
-
-  .summary-card {
-    background: white;
     border: 1px solid var(--line);
-    border-radius: 8px;
-    min-height: 148px;
-    padding: 18px;
+    color: var(--ink);
   }
 
-  .summary-card.main {
-    background: var(--ink);
-    color: white;
-    grid-row: span 2;
+  :global([data-theme="dark"]) .primary {
+    background: #f5faf6;
+    color: #07110d;
   }
 
-  .summary-card span {
-    color: var(--coral);
-    display: block;
+  .scroll-cue {
+    bottom: 20px;
+    color: var(--muted);
     font-size: 12px;
     font-weight: 900;
-    margin-bottom: 22px;
+    left: 50%;
+    letter-spacing: 0.28em;
+    position: absolute;
+    text-transform: uppercase;
+    transform: translateX(-50%);
+  }
+
+  .verb-strip {
+    border-bottom: 1px solid var(--line);
+    border-top: 1px solid var(--line);
+    background: color-mix(in srgb, var(--brand-green), transparent 72%);
+    padding: 22px 0;
+  }
+
+  .verb-grid {
+    display: grid;
+    gap: 10px;
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+  }
+
+  .verb-grid span {
+    color: var(--mint);
+    font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+    font-size: 13px;
+    font-weight: 900;
+    text-align: center;
     text-transform: uppercase;
   }
 
-  .summary-card.main span {
-    color: var(--mint);
+  .workflow-section,
+  .metrics-section {
+    padding: 100px 0;
   }
 
-  .summary-card strong {
-    display: block;
-    font-size: clamp(28px, 4vw, 52px);
-    line-height: 1;
+  .workflow-grid {
+    align-items: center;
+    display: grid;
+    gap: 70px;
+    grid-template-columns: minmax(0, 0.9fr) minmax(360px, 1.1fr);
   }
 
-  .summary-card p {
+  .workflow-copy h2,
+  .section-head h2,
+  .cta-inner h2 {
+    font-size: clamp(40px, 7vw, 82px);
+    font-weight: 950;
+    letter-spacing: 0;
+    line-height: 0.95;
+    margin: 0;
+  }
+
+  .workflow-copy p,
+  .cta-inner p {
     color: var(--muted);
-    line-height: 1.45;
-    margin: 12px 0 0;
+    font-size: 18px;
+    line-height: 1.7;
+    margin: 26px 0 0;
   }
 
-  .summary-card.main p {
-    color: rgba(255, 255, 255, 0.72);
+  .workflow-copy ul {
+    display: grid;
+    gap: 18px;
+    list-style: none;
+    margin: 34px 0 0;
+    padding: 0;
   }
 
-  @media (max-width: 860px) {
+  .workflow-copy li {
+    color: var(--muted);
+    line-height: 1.55;
+    padding-left: 28px;
+    position: relative;
+  }
+
+  .workflow-copy li::before {
+    background: var(--mint);
+    border-radius: 999px;
+    content: "";
+    height: 8px;
+    left: 0;
+    position: absolute;
+    top: 8px;
+    width: 8px;
+  }
+
+  .workflow-copy strong {
+    color: var(--ink);
+  }
+
+  .terminal-card {
+    background: #050d09;
+    border: 1px solid rgba(55, 224, 160, 0.22);
+    border-radius: 8px;
+    box-shadow: 0 26px 90px rgba(0, 0, 0, 0.28);
+    overflow: hidden;
+    position: relative;
+  }
+
+  .terminal-card::after {
+    animation: scanLine 6s linear infinite;
+    background: linear-gradient(180deg, transparent, rgba(55, 224, 160, 0.08), transparent);
+    content: "";
+    inset: 0;
+    pointer-events: none;
+    position: absolute;
+  }
+
+  .terminal-top {
+    align-items: center;
+    background: rgba(255, 255, 255, 0.05);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    gap: 8px;
+    min-height: 44px;
+    padding: 0 16px;
+  }
+
+  .terminal-top span {
+    border-radius: 999px;
+    height: 10px;
+    width: 10px;
+  }
+
+  .terminal-top span:nth-child(1) {
+    background: #ff6d4d;
+  }
+
+  .terminal-top span:nth-child(2) {
+    background: #ffcb57;
+  }
+
+  .terminal-top span:nth-child(3) {
+    background: var(--mint);
+  }
+
+  .terminal-top strong {
+    color: var(--mint);
+    font-size: 12px;
+    font-weight: 700;
+    margin-left: auto;
+  }
+
+  .terminal-body {
+    padding: 20px 22px 26px;
+  }
+
+  .terminal-body p {
+    color: #f4fbf6;
+    font-size: 15px;
+    line-height: 1.7;
+    margin: 0;
+  }
+
+  .terminal-body span {
+    color: var(--mint);
+    margin-right: 12px;
+  }
+
+  .section-head {
+    margin-bottom: 34px;
+    max-width: 760px;
+  }
+
+  .metric-grid {
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    overflow: hidden;
+  }
+
+  .metric-grid article {
+    background: color-mix(in srgb, var(--surface), transparent 8%);
+    border-right: 1px solid var(--line);
+    min-height: 260px;
+    padding: 28px;
+  }
+
+  .metric-grid article:last-child {
+    border-right: 0;
+  }
+
+  .metric-grid span {
+    color: var(--muted);
+    font-size: 12px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+  }
+
+  .metric-grid strong {
+    color: var(--ink);
+    display: block;
+    font-size: clamp(38px, 6vw, 76px);
+    line-height: 1;
+    margin-top: 24px;
+  }
+
+  .metric-grid p {
+    color: var(--muted);
+    line-height: 1.6;
+    margin-top: 26px;
+  }
+
+  .cta-section {
+    border-bottom: 1px solid var(--line);
+    border-top: 1px solid var(--line);
+    margin-top: 70px;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .pattern {
+    background-image: radial-gradient(rgba(55, 224, 160, 0.42) 1px, transparent 1px);
+    background-size: 32px 32px;
+    inset: 0;
+    opacity: 0.18;
+    position: absolute;
+  }
+
+  .cta-inner {
+    padding: 110px 20px;
+    position: relative;
+    text-align: center;
+  }
+
+  .cta-inner p {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 640px;
+  }
+
+  @media (max-width: 960px) {
+    .workflow-grid,
+    .metric-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .metric-grid article,
+    .metric-grid article:last-child {
+      border-bottom: 1px solid var(--line);
+      border-right: 0;
+      min-height: 210px;
+    }
+
+    .metric-grid article:last-child {
+      border-bottom: 0;
+    }
+
+    .verb-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+
+  @media (max-width: 560px) {
     .hero {
+      min-height: auto;
+    }
+
+    .hero-inner {
+      min-height: auto;
+      padding-bottom: 80px;
       padding-top: 58px;
     }
 
-    .hero-grid {
-      grid-template-columns: 1fr;
+    .verb-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
     }
-  }
 
-  @media (max-width: 520px) {
-    .hero-panel {
-      grid-template-columns: 1fr;
+    .workflow-section,
+    .metrics-section {
+      padding: 70px 0;
     }
   }
 </style>
